@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="container col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-5 py-5">
+        <div class="col-12 col-lg-6">
+            <hi class="display-4 fw-bold lh-1 mb-2">
+                Blog - The Dev Blog
+            </hi>
+            <p class="lead mt-2">
+                This blog is the home to coding-related articles covering a vast range of topics like HTML, CSS, Javascript, ASP.NET, C#, Angular, SQL, etc.
+                Want to reaad the latest dev articles? Join the blog and get weekly posts right in your email!
+            </p>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <img src="https://images.pexels.com/photos/285814/pexels-photo-285814.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Alternate Text" class="d-block mx-lg-auto img-fluid" width="400" />
+
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h2 class="mb-5 display-5 fw-bold">Blog Posts</h2>
+             @if (Model.Blogs != null && Model.Blogs.Any())
+            {
+                foreach (var blog in Model.Blogs)
+                {
+                    <div class="mb-5 bg-light box-shadow">
+                        <img src="@blog.FeaturedImageUrl" alt="@blog.Heading" class="mb-2 d-block img-fluid" />
+                        <div class="px-4 py-4">
+                            <h2 class="mb-2">@blog.Heading</h2>
+                            <p>
+                                Author: @blog.Author
+                                <br />
+                                Date Published: @blog.PublishedDate.ToShortDateString()
+                            </p>
+                            <p class="mb-2">@blog.ShortDescription</p>
+                            <a href="/blog/@blog.UrlHandle" class="btn btn-dark">Read More</a>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
